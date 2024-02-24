@@ -42,10 +42,13 @@ To use this project, follow these steps:
    - Student's Age
    - Buying Date
    - Student's Photo
-   After entering these data you will notice a button called **AddBook**. By pressing this button you can add
+     
+After entering these data you will notice a button called **AddBook**. By pressing this button you can add
+
    - Book Title
    - Book Price
    Finally, click the **Add** buttton to submit the data. Note that, you have to add **Book Detail** to submit the form.
+4. **Checking The result**: You can check your data entry by observing the table rows, located at the end of the form. From there you can also **Edit** and **Delete** the entry.
 4. **Explore the code**: You can open the project in Visual Studio 2022 and explore the code. The project consists of javascript, jquery and C#.
 
 ## Contributing
