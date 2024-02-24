@@ -1,0 +1,53 @@
+﻿@model TestV1.VM.VmSale
+@{
+    var ButtonValue = Model.SID > 0 ? "update" : "add";
+    var indexItem = 0;
+    //var SDate = Model.SDate?.ToString("yyyy-MM-DD") ?? "";
+    var SDate = Model.SDate == null ? "" :
+        Convert.ToDateTime(Model.SDate).ToString("yyyy-MM-dd");
+
+}
+<form method="POST" data-ajax="true" data-ajax-method="POST" data-ajax-url="/My/Single" enctype="multipart/form-data" class="form-group">
+    @Html.HiddenFor(x => x.SID)
+    <div class="form-group">
+        @Html.LabelFor(x => x.SName, new { @class = "control-label" })
+        @Html.TextBoxFor(x => x.SName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.SAge, new { @class = "control-label" })
+        @Html.TextBoxFor(x => x.SAge, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.SDate, new { @class = "control-label" })
+        <input type="date" id="SDate" name="SDate" value="@SDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.SPhoto, new { @class = "control-label" })
+        @Html.TextBox("img", "", new { type = "file", @class = "form-control-file" })
+    </div>
+    <button type="submit" id="btn" class="btn btn-primary">@ButtonValue</button>
+    <a href="/My/Single" class="btn btn-secondary">Reset</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th><button type="button" onclick="addItem()" class="btn btn-primary">AddBook</button></th>
+            </tr>
+        </thead>
+        <tbody id="tSD">
+            @if (Model.Details != null)
+            {
+                foreach (var item in Model.Details)
+                {
+                    <tr id="tr_@indexItem">
+                        <td><input type="text" id="Title_1" name="Title" value="@item.Title" class="form-control" /></td>
+                        <td><input type="number" id="Price_1" name="Price" value="@item.Price" class="form-control" /></td>
+                        <td><a href="javascript:void(0)" onclick="removeItem(@indexItem)" class="btn btn-danger">Remove</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
+

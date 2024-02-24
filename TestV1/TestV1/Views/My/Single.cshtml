@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Single";
+    var listm = ViewData["List"] as List<TestV1.Models.StudentMaster>;
+    var indexItem = 0;
+}
+<partial name="PartialView" />
+<table class="table table-striped">
+    <tr>
+        <th>StudentName</th>
+        <th>StudentAge</th>
+        <th>StudentDate</th>
+        <th>StudentPhoto</th>
+        <th>Edit Action</th>
+        <th>Delete Action</th>
+    </tr>
+    @foreach (var item in listm)
+    {
+        <tr>
+            <td>@item.SName</td>
+            <td>@item.SAge</td>
+            <td>@item.SDate</td>
+            <td><img src="@item.SPhoto" height="50" width="50" /></td>
+            <td><a href="/My/Single?id=@item.SID">Edit</a></td>
+            <td><a href="/My/SingleDelete?id=@item.SID">Delete</a></td>
+        </tr>
+    }
+</table>
+<script>
+    var indexItem = @indexItem;
+    function addItem() {
+        indexItem += 1;
+        var TRs = `<tr id="tr_${indexItem}">
+        <td><input type="text" id="Title_1" name="Title" value=""/></td>
+        <td><input type="number" id="Price_1" name="Price" value=""/></td>
+        <td><a href="javascript:void(0)" onclick="removeItem(${indexItem})">Remove</a></td>
+        </tr>`
+        document.getElementById('tSD').innerHTML += TRs;
+    }
+    function removeItem(id) {
+        document.getElementById('tr_' + id).remove();
+    }
+</script>
+
